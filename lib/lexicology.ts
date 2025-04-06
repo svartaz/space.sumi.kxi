@@ -52,7 +52,7 @@ const dicPre = new Map<string, ValuePre>(
 
 const toTokens = (ks: string[]) => ks.map((k) => (k.startsWith('$') ? k.substring(1) : dicPre.get(k)?.t ?? dicPre.get(k + '*')?.t ?? dicPre.get(k + '#')?.t));
 
-const join = (tokens) => tokens.slice(1).reduce((joined, token) => (!invalid(joined) && invalid(joined + token) && !invalid(joined + 'a' + token) ? joined + 'a' + token : joined + token), tokens[0]);
+const joinTokens = (tokens) => tokens.slice(1).reduce((joined, token) => (!invalid(joined, Formation.Complex) && !invalid(token, Formation.Complex) && invalid(joined + token, Formation.Complex) ? joined + 'u' + token : joined + token), tokens[0]);
 
 // generate
 for (let i = 0; i < dicPre.size + 1; i++)
@@ -66,7 +66,7 @@ for (let i = 0; i < dicPre.size + 1; i++)
         delete v.complex;
         dicPre.set(k, {
           ...v,
-          t: join(tokens),
+          t: joinTokens(tokens),
         });
       }
     } else if ('idiom' in v) {
@@ -112,12 +112,8 @@ for (let i = 0; i < dic.size; i++)
   }
 
 for (const [k, { t: token, formation }] of dic.entries()) {
-  if (formation === Formation.Simplex) if (7 <= token.length) console.error(`invalid: long simplex: .${k} = ${token}`);
-
-  if (formation !== Formation.Idiom) {
-    const invalidity = invalid(token);
-    if (invalidity) console.error(`invalid: ${invalidity}: .${k} = ${token}`);
-  }
+  const invalidity = invalid(token, formation);
+  if (invalidity) console.error(`invalid: ${invalidity}: .${k} = ${token}`);
 }
 
 export const translate = (code: string) => code.replace(/[a-z_]+\{?|[\[\]\}\*\#]|\,/g, (k) => dic.get(k)?.t ?? dic.get(k + '*')?.t ?? dic.get(k + '#')?.t ?? k);

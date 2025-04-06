@@ -39,8 +39,11 @@ const term = {
 
 export default () => (
   <>
-    <h1 style={{ textAlign: 'center' }}>
-      <Target>{name}</Target>
+    <h1>
+      <ruby style={{ rubyPosition: 'under' }}>
+        <Target>{name}</Target>
+        <rt className="ipa">{toIpa(name)}</rt>
+      </ruby>
     </h1>
 
     <div
@@ -68,7 +71,7 @@ export default () => (
         <tr>
           <th colSpan={2}>nasal</th>
           <td className="target">
-            g<sub className="ipa">{toIpa('g').substring(0, 1)}</sub>
+            g<sub className="ipa">{toIpa('g')}</sub>
           </td>
           <td></td>
           <td className="target">n</td>
@@ -141,11 +144,11 @@ export default () => (
     <ul>
       <li>
         {'{'}
-        <Target>j, v</Target>
+        <Target>j,v</Target>
         {'}'} is
       </li>
       <ul>
-        <li>a fricative between vowels.</li>
+        <li>a fricative if word-initial or inter-vocalic.</li>
         <li>an approcsimant otherwise.</li>
       </ul>
       <li>a word can't</li>
@@ -156,7 +159,11 @@ export default () => (
             <Target>z</Target> is put before a loan word that begineth with a vowel.
           </li>
         </ul>
-        <li>end with a voiced obstruent.</li>
+        <li>
+          end without {'{'}
+          <Target>n,m,k,t,x,s,f,j,v,r</Target>
+          {'}'}∪vowel.
+        </li>
       </ul>
     </ul>
 
@@ -172,6 +179,8 @@ export default () => (
         [
           ['my name is sumi', 'i called $sumi'],
           ['i am speaking a language which i am making', 'i speak den done make der i'],
+
+          ['all human beings are born free and equal in dignity and rights.', 'each human done beget then free and same by how_much noble _end and right'],
 
           ['(someone) giveth (something) (to someone)', 'give'],
           ['(someone) giveth water (to someone)', 'give den water'],
@@ -291,7 +300,7 @@ export default () => (
       </thead>
       <tbody>
         {[...dic.entries()].map(([key, { t: token, td: tokened, c: klass, o: origin, formation }]) => (
-          <tr id={'entry-' + key} style={token.split(' ').some(invalid) ? { backgroundColor: 'lightcoral' } : {}}>
+          <tr id={'entry-' + key} style={invalid(token, formation) ? { backgroundColor: 'lightcoral' } : {}}>
             <td className="code">{key}</td>
             <td>
               <Target>{token}</Target>
@@ -326,7 +335,7 @@ export default () => (
             <td style={{ fontSize: 'xx-small' }} className={formation === Formation.Simplex ? '' : 'code'}>
               {origin?.startsWith('https://') ? <a href={origin}>{decodeURI(origin).replace(/^https?:\/\//, '')}</a> : origin}
             </td>
-            <td style={{ fontSize: 'xx-small' }}>{token.split(' ').map(invalid)}</td>
+            <td style={{ fontSize: 'xx-small' }}>{invalid(token, formation)}</td>
           </tr>
         ))}
       </tbody>

@@ -1,20 +1,22 @@
 import { replaceEach } from './common';
+import { Formation } from './lexicology';
 
 export const glide = (word) =>
   replaceEach(word, [
-    [/^j/g, 'J'],
-    [/^v/g, 'V'],
-    [/(?<=[aiueo])jj(?=[aiueo])/g, 'ĭJ'],
-    [/(?<=[aiueo])jv(?=[aiueo])/g, 'ĭV'],
-    [/(?<=[aiueo])vj(?=[aiueo])/g, 'wJ'],
-    [/(?<=[aiueo])vv(?=[aiueo])/g, 'wV'],
-    [/(?<=^|[aiueo])j(?=[waiueo])/g, 'J'],
-    [/(?<=^|[aiueo])v(?=[ĭaiueo])/g, 'V'],
+    [/j/g, 'J'],
+    [/v/g, 'V'],
 
-    [/j/g, 'ĭ'],
-    [/v/g, 'w'],
+    [/^J/g, 'ʒ'],
+    [/^V/g, 'v'],
+    [/(?<=[aiueo])JJ(?=[aiueo])/g, 'jʒ'],
+    [/(?<=[aiueo])JV(?=[aiueo])/g, 'jv'],
+    [/(?<=[aiueo])VJ(?=[aiueo])/g, 'wʒ'],
+    [/(?<=[aiueo])VV(?=[aiueo])/g, 'wv'],
+    [/(?<=[aiueo])J(?=[aiueo])/g, 'ʒ'],
+    [/(?<=[aiueo])V(?=[aiueo])/g, 'v'],
+
     [/J/g, 'j'],
-    [/V/g, 'v'],
+    [/V/g, 'w'],
   ]);
 
 export const toIpa = (s: string): string =>
@@ -22,62 +24,75 @@ export const toIpa = (s: string): string =>
     replaceEach(it, [
       [/.+/, (it) => glide(it).toUpperCase()],
 
-      [/(?<=[ĬWAIUEO])N(?![ĬWAIUEO])/g, '\u0303'],
-      [/Ĭ/g, 'j'],
-      [/W/g, 'w'],
+      [/(?<=[AIUEO])([JW])?N(?![JWAIUEO])/g, '\u0303$1'],
+
+      [/K$/g, 'kʰ'],
+      [/T$/g, 'tʰ'],
+      [/P$/g, 'pʰ'],
+
       [/G/g, 'ŋ'],
       [/C/g, 'g'],
       [/X/g, 'ɕ'],
-      [/J/g, 'ʑ'],
+      [/Ʒ/g, 'ʑ'],
       [/R/g, 'ɾ'],
 
-      [/.+/, (it) => it.toLowerCase().normalize('NFKC')],
+      [/.+/, (it) => it.toLowerCase().normalize('NFC')],
     ])
   );
 
 const checkSonority = (word: string) =>
-  word.split(/[iueoaw]+/g).every((consonants, i, self) => {
-    if (i === 0) return /^[xsfjzv]?[cdbktp]?[xsfjzv]?[gnm]?r?$/.test(consonants);
-    else if (i === self.length - 1) return /^r?[gnm]?[jzv]?[xsf]?[cdb]?[ktp]?[xsf]?[jzv]?$/.test(consonants);
-    else return /^r?[gnm]?[xsfjzv]?[cdbktp]?[jzvxsf]?[gnm]?r?$/.test(consonants);
-  });
+  word
+    .split(/[aiueo]+/g)
+    .every((cluster, i, self) =>
+      i === 0 ? /^[xsfʒzv]?[cdbktp]?[xsfʒzv]?[gnm]?[rl]?[jw]?$/.test(cluster) : i === self.length - 1 ? /^[jw]?[rl]?[gnm]?[xsfʒzv]?[cdbktp]?[xsfʒzv]?$/.test(cluster) : /^[jw]?[rl]?[gnm]?[xsfʒzv]?[cdbktp]?[xsfʒzv]?[gnm]?[rl]?[jw]?$/.test(cluster)
+    );
 
-export const invalid = (word: string): string | null => {
+export const invalid = (token: string, formation: Formation): string | null => {
+  if (formation === Formation.Idiom) return null;
+
   for (const [item, pattern] of [
+    // base
     ['empty', /^$/],
+    ['non-alphabet', /[^gnmcdbktpxsfʒzvjrlwaiueo]/],
     ['repeat', /(.)\1/],
-    ['non-alphabet', /[^gnmcdbktpxsfjzvrlĭwaiueo]/],
-    ['initial', /^[aiueo]/],
-    ['final', /[^nmktxsfrĭwaiueo]$/],
-    ['coda', /l(?![ĭwaiueo])/],
 
     // vowel or consonant
     ['2 vowels', /[aiueo]{2}/],
-    ['3 consonants', /[^ĭwaiueo]{3}/],
+    ['3 consonants', /[^jwaiyueo]{3}/],
+
+    // balance
+    ['initial-heavy', /^[^aiueo]{3,}[aiueo][^aiueo]$/],
+    ['final-heavy', /^[^aiueo][aiueo][^jwaiueo]{3,}$/],
+
+    // boundary
+    ['initial', /^[aiueo]/],
+    ['final', /[gcdbpʒzvl]$/],
+
+    // coda
+    ['coda', /[gʒzl](?![jwaiueo])/],
+    ['coda', /[cdbv](?![rljwaiueo])/],
 
     // place
     ['velar front', /[gck]i/],
-    ['palatal front', /[xj]ĭ/],
+    ['palatal front', /[xʒ]j/],
     ['labial back', /[mbpfv]w/],
 
-    ['velar plosive nasal', /[ck]g/],
-    ['dental plosive nasal', /[dt]n/],
-    ['labial plosive nasal', /[bp]m/],
-
-    ['palatal glide', /(?<![xj])iw/],
-    ['labial glide', /(?<![mbpfv])uĭ/],
+    ['plosive nasal velar', /[ck]g/],
+    ['plosive nasal dental', /[dt]n/],
+    ['plosive nasal labial', /[bp]m/],
 
     // manner
-    ['sibilant', /xs|sx/],
     ['nasal', /[gnm]{2}/],
-    ['plosive +v', /[cdb][gnmcdbktpxsfjzv]/],
-    ['plosive -v', /[ktp][cdbktpjzv]/],
-    ['fricative -v', /[xsf][cdbjzv]/],
-    ['fricative +v', /[jzv][cdbktpxsfjzv]/],
+    ['plosive', /[cdbktp][cdbktpʒzv]/],
+    ['plosive+v', /[cdb][xsf]/],
+    ['fricative', /[xsfʒzv][cdbʒzv]/],
+    ['sibilant', /[xsʒz]{2}/],
   ] as [string, RegExp][])
-    if (pattern.test(glide(word))) return item;
+    if (pattern.test(glide(token))) return item;
 
-  //if (!checkSonority(phonetic)) return 'sonority';
+  if (!checkSonority(glide(token))) return 'sonority';
+
+  if (formation === Formation.Simplex && 6 <= token.length) return 'long simplex';
 
   return null;
 };
