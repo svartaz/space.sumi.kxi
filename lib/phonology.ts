@@ -24,7 +24,7 @@ export const toIpa = (s: string): string =>
     replaceEach(it, [
       [/.+/, (it) => glide(it).toUpperCase()],
 
-      [/(?<=[AIUEO])([JW])?N(?![JWAIUEO])/g, '\u0303$1'],
+      [/(?<=[JWAIUEO])N(?![JWAIUEO])/g, '\u0303'],
 
       [/K$/g, 'kʰ'],
       [/T$/g, 'tʰ'],
@@ -40,15 +40,10 @@ export const toIpa = (s: string): string =>
     ])
   );
 
-const checkSonority = (word: string) =>
-  word
-    .split(/[aiueo]+/g)
-    .every((cluster, i, self) =>
-      i === 0 ? /^[xsfʒzv]?[cdbktp]?[xsfʒzv]?[gnm]?[rl]?[jw]?$/.test(cluster) : i === self.length - 1 ? /^[jw]?[rl]?[gnm]?[xsfʒzv]?[cdbktp]?[xsfʒzv]?$/.test(cluster) : /^[jw]?[rl]?[gnm]?[xsfʒzv]?[cdbktp]?[xsfʒzv]?[gnm]?[rl]?[jw]?$/.test(cluster)
-    );
+const checkSonority = (word: string) => /^[xsfʒzv]?[cdbktp]?[xsfʒzv]?[gnm]?[rl]?[jw]?[aiueo]([jw]?[rl]?[gnm]?[xsfʒzv]?[cdbktp]?[xsfʒzv]?[gnm]?[rl]?[jw]?[aiueo])*[jw]?[rl]?[gnm]?[xsfʒzv]?[cdbktp]?[xsfʒzv]?$/.test(word);
 
 export const invalid = (token: string, formation: Formation): string | null => {
-  if (formation === Formation.Idiom) return null;
+  if (formation !== Formation.Simplex) return null;
 
   for (const [item, pattern] of [
     // base

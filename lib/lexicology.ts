@@ -52,7 +52,7 @@ const dicPre = new Map<string, ValuePre>(
 
 const toTokens = (ks: string[]) => ks.map((k) => (k.startsWith('$') ? k.substring(1) : dicPre.get(k)?.t ?? dicPre.get(k + '*')?.t ?? dicPre.get(k + '#')?.t));
 
-const joinTokens = (tokens) => tokens.slice(1).reduce((joined, token) => (!invalid(joined, Formation.Complex) && !invalid(token, Formation.Complex) && invalid(joined + token, Formation.Complex) ? joined + 'u' + token : joined + token), tokens[0]);
+const joinTokens = (tokens) => tokens.slice(1).reduce((joined, token) => (!invalid(joined, Formation.Complex) && !invalid(token, Formation.Complex) && invalid(joined + token, Formation.Complex) ? joined + '' + token : joined + token), tokens[0]);
 
 // generate
 for (let i = 0; i < dicPre.size + 1; i++)
