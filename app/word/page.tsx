@@ -1,7 +1,6 @@
 import dic, { Formation, translate } from '../../lib/lexicology';
 import { invalid, toIpa } from '../../lib/phonology';
 import { replaceEach } from '../../lib/common';
-import { Letter } from '../../lib/letter';
 import { toDayString } from '../../lib/date';
 import { Target } from '../page';
 import { CSSProperties } from 'react';
@@ -122,16 +121,5 @@ export default () => (
         ))}
       </tbody>
     </table>
-
-    <h2>letter</h2>
-
-    <div
-      style={{
-        inlineSize: 'fit-content',
-        marginInline: 'auto',
-      }}
-    >
-      <Letter>{['K k T t P p', 'C c D d B b', 'X x S s F f', 'H h Z z V v', 'G g N n M m', '      j r    w', '      i I u U', '      e E o O', 'A a'].join('\n')}</Letter>
-    </div>
   </>
 );

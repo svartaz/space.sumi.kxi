@@ -116,6 +116,6 @@ for (const [k, { t: token, formation }] of dic.entries()) {
   if (invalidity) console.error(`invalid: ${invalidity}: .${k} = ${token}`);
 }
 
-export const translate = (code: string) => code.replace(/[a-z_]+\{?|[\[\]\}\*\#]|\,/g, (k) => dic.get(k)?.t ?? dic.get(k + '*')?.t ?? dic.get(k + '#')?.t ?? k);
+export const translate = (code: string) => code.replace(/[a-z_]+/g, (k) => dic.get(k)?.t ?? dic.get(k + '*')?.t ?? dic.get(k + '#')?.t ?? k);
 
 export default dic;

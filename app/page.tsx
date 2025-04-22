@@ -51,14 +51,14 @@ export default () => (
           <th></th>
           <th></th>
           <th>velar</th>
-          <th>palatal</th>
-          <th>dental</th>
-          <th>labial</th>
+          <th>mouthroofy</th>
+          <th>toothly</th>
+          <th>lippy</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th colSpan={2}>nasal</th>
+          <th colSpan={2}>nosely</th>
           <td className="target">
             g<sub className="ipa">{toIpa('g')}</sub>
           </td>
@@ -68,7 +68,7 @@ export default () => (
         </tr>
         <tr>
           <th rowSpan={2}>plosive</th>
-          <th>voiced</th>
+          <th>rearded</th>
           <td className="target">
             c<sub className="ipa">{toIpa('c').substring(0, 1)}</sub>
           </td>
@@ -77,7 +77,7 @@ export default () => (
           <td className="target">b</td>
         </tr>
         <tr>
-          <th rowSpan={2}>unvoiced</th>
+          <th rowSpan={2}>unrearded</th>
           <td className="target">k</td>
           <td></td>
           <td className="target">t</td>
@@ -85,7 +85,7 @@ export default () => (
         </tr>
         <tr>
           <th rowSpan={2}>fricative</th>
-          <td></td>
+          <td className="target">h</td>
           <td className="target">
             x<sub className="ipa">{toIpa('x').substring(0, 1)}</sub>
           </td>
@@ -93,7 +93,7 @@ export default () => (
           <td className="target">f </td>
         </tr>
         <tr>
-          <th>voiced</th>
+          <th>rearded</th>
           <td></td>
           <td className="target">
             j<sub className="ipa">{toIpa('ja').substring(0, 1)}</sub>
@@ -113,7 +113,7 @@ export default () => (
           </td>
         </tr>
         <tr>
-          <th rowSpan={2}>vowel</th>
+          <th rowSpan={2}>clepend</th>
           <th>non-mid</th>
           <td className="target">a</td>
           <td className="target">i</td>
@@ -142,14 +142,14 @@ export default () => (
       </ul>
       <li>a word can't</li>
       <ul>
-        <li>begin with a vowel.</li>
+        <li>begin with a clepend.</li>
         <ul>
           <li>
-            <Target>z</Target> is put before a loan word that begineth with a vowel.
+            <Target>z</Target> is put before a loan word that begineth with a clepend.
           </li>
         </ul>
         <li>
-          end without a vowel or {'{'}
+          end without a clepend or {'{'}
           <Target>n,m,k,t,x,s,f,j,v,r</Target>
           {'}'}.
         </li>
@@ -161,7 +161,7 @@ export default () => (
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: '1rem',
+        gap: '.5rem',
       }}
     >
       {[
@@ -189,13 +189,27 @@ export default () => (
 
           ['no person is loved by every person', 'zero person done love der each person'],
           ['for no person 𝑜, for any person 𝑠, 𝑠 loves 𝑜', 'zero person _0 each person _1 _1 love der _0'],
+
+          ['(ニューエクスプレスプラス 中国語 1)\n請問, 您 是 鈴木 小姐 嗎?', 'hi thou whether called suzuki'],
+          ['是, 我 是 鈴木惠子.', 'one . i called suzukikeiko'],
+          ['您 是 李 先生 嗎?', 'thou whether called li'],
+          ['是, 我 是 李明.', 'one . i called limig'],
+          ['李明 先生, 你好!', 'thou called limig . i greet'],
+          ['你好, 鈴木 小姐.', 'i greet den thou called suzuki'],
+
+          ['(ニューエクスプレスプラス 中国語 2)\n你 爸爸 好 嗎?', 'male beget den thou , whether healthy'],
+          ['謝謝, 他 很 好.', 'i thank . he healthy'],
+          ['你 爸爸 忙 不 忙?', 'male beget den thou , whether busy'],
+          ['他 很 忙.', 'he busy'],
+          ['你 媽媽 呢?', 'female beget thou , whether do'],
+          ['他 不太 忙.', 'he not busy ly much'],
         ].map(([en, code]) => (
           <table className="sample">
             <tbody>
               <tr>
-                <td>
+                <td className="target">
                   {code.split(/(?<=\s+)|(?=\s+)/g).map((chunk, i, self) => {
-                    if (chunk.startsWith('$')) return <span className="target">{chunk.slice(1)}</span>;
+                    if (chunk.startsWith('$')) return chunk.slice(1);
                     else if (dic.has(chunk)) {
                       const token = dic.get(chunk)?.t;
                       const orth = orthography(token);
@@ -203,13 +217,13 @@ export default () => (
 
                       return orth === ipa ? (
                         <ruby>
-                          <span className="target">{orth}</span>
+                          {orth}
                           <rt className="code">{chunk}</rt>
                         </ruby>
                       ) : (
                         <ruby>
                           <ruby>
-                            <span className="target">{orth}</span>
+                            {orth}
                             <rt className="ipa">{ipa}</rt>
                           </ruby>
                           <rt className="code">{chunk}</rt>
@@ -226,8 +240,7 @@ export default () => (
       ]}
     </div>
 
-    <h2>letter</h2>
-
+    <h2>bookstaff</h2>
     <div
       style={{
         inlineSize: 'fit-content',

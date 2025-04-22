@@ -40,7 +40,7 @@ export const toIpa = (s: string): string =>
     ])
   );
 
-const checkSonority = (word: string) => /^[xsfʒzv]?[cdbktp]?[xsfʒzv]?[gnm]?[rl]?[jw]?[aiueo]([jw]?[rl]?[gnm]?[xsfʒzv]?[cdbktp]?[xsfʒzv]?[gnm]?[rl]?[jw]?[aiueo])*[jw]?[rl]?[gnm]?[xsfʒzv]?[cdbktp]?[xsfʒzv]?$/.test(word);
+const checkSonority = (word: string) => /^[hxsfʒzv]?[cdbktp]?[hxsfʒzv]?[gnm]?[rl]?[jw]?[aiueo]([jw]?[rl]?[gnm]?[hxsfʒzv]?[cdbktp]?[hxsfʒzv]?[gnm]?[rl]?[jw]?[aiueo])*[jw]?[rl]?[gnm]?[hxsfʒzv]?[cdbktp]?[hxsfʒzv]?$/.test(word);
 
 export const invalid = (token: string, formation: Formation): string | null => {
   if (formation !== Formation.Simplex) return null;
@@ -48,11 +48,11 @@ export const invalid = (token: string, formation: Formation): string | null => {
   for (const [item, pattern] of [
     // base
     ['empty', /^$/],
-    ['non-alphabet', /[^gnmcdbktpxsfʒzvjrlwaiueo]/],
+    ['non-alphabet', /[^gnmcdbktphxsfʒzvjrlwaiueo]/],
     ['repeat', /(.)\1/],
 
-    // vowel or consonant
-    ['2 vowels', /[aiueo]{2}/],
+    // clepend or consonant
+    ['2 clepends', /[aiueo]{2}/],
     ['3 consonants', /[^jwaiyueo]{3}/],
 
     // balance
@@ -69,18 +69,18 @@ export const invalid = (token: string, formation: Formation): string | null => {
 
     // place
     ['velar front', /[gck]i/],
-    ['palatal front', /[xʒ]j/],
-    ['labial back', /[mbpfv]w/],
+    ['mouthroofy front', /[xʒ]j/],
+    ['lippy back', /[mbpfv]w/],
 
-    ['plosive nasal velar', /[ck]g/],
-    ['plosive nasal dental', /[dt]n/],
-    ['plosive nasal labial', /[bp]m/],
+    ['plosive nosely velar', /[ck]g/],
+    ['plosive nosely toothly', /[dt]n/],
+    ['plosive nosely lippy', /[bp]m/],
 
     // manner
-    ['nasal', /[gnm]{2}/],
+    ['nosely', /[gnm]{2}/],
     ['plosive', /[cdbktp][cdbktpʒzv]/],
-    ['plosive+v', /[cdb][xsf]/],
-    ['fricative', /[xsfʒzv][cdbʒzv]/],
+    ['plosive+v', /[cdb][hxsf]/],
+    ['fricative', /[hxsfʒzv][cdbʒzv]/],
     ['sibilant', /[xsʒz]{2}/],
   ] as [string, RegExp][])
     if (pattern.test(glide(token))) return item;

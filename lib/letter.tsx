@@ -62,7 +62,7 @@ const consonants = {
 3 4 5
 */
 
-const vowelPointToCoord = [
+const clependPointToCoord = [
   [2, 0],
   [1, 2],
   [3, 2],
@@ -71,7 +71,7 @@ const vowelPointToCoord = [
   [4, 4],
 ];
 
-const vowels = {
+const clepends = {
   a: [3, 0, 5],
   A: [3, 1, 4, 1, 0, 5],
 
@@ -105,7 +105,7 @@ export const Letter = (props) => {
 
               x += 4;
               before = 'C';
-            } else if (c in vowels) {
+            } else if (c in clepends) {
               if (x === 0) 0;
               else if (before === 'C') x -= 0.5;
               else if (before === 'V') x += 1;
@@ -129,22 +129,8 @@ export const Letter = (props) => {
 
   const strokeWidth = 1 / 2;
   return (
-    <svg
-      title={props.title}
-      viewBox={`${-strokeWidth} ${-strokeWidth} ${nx + strokeWidth * 2} ${
-        ny * 4 + (ny - 1) * marginY + strokeWidth * 2
-      }`}
-      width={`${nx / 6}rem`}
-      style={props.style}
-      {...props}
-    >
-      <g
-        stroke="currentColor"
-        strokeWidth={strokeWidth}
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        fill="none"
-      >
+    <svg title={props.title} viewBox={`${-strokeWidth} ${-strokeWidth} ${nx + strokeWidth * 2} ${ny * 4 + (ny - 1) * marginY + strokeWidth * 2}`} width={`${nx / 6}rem`} style={props.style} {...props}>
+      <g stroke="currentColor" strokeWidth={strokeWidth} strokeLinejoin="round" strokeLinecap="round" fill="none">
         {[...props.children].map((c) => {
           switch (c) {
             case '\n':
@@ -179,7 +165,7 @@ export const Letter = (props) => {
                 x += 4;
                 before = 'C';
                 return path;
-              } else if (c in vowels) {
+              } else if (c in clepends) {
                 if (x === 0) 0;
                 else if (before === 'C') x -= 0.5;
                 else if (before === 'V') x += 1;
@@ -188,9 +174,9 @@ export const Letter = (props) => {
                   <path
                     d={
                       'M' +
-                      vowels[c]
+                      clepends[c]
                         .map((p) => {
-                          const [dx, dy] = vowelPointToCoord[p];
+                          const [dx, dy] = clependPointToCoord[p];
                           return `${x + dx} ${y + dy}`;
                         })
                         .join('L')

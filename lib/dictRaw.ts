@@ -28,33 +28,33 @@ export enum Semantic {
 
 const fromAcronym = (acronym: string) =>
   replaceEach(acronym.toUpperCase(), [
-    [/A/g, 'za'],
-    [/Ä/g, 'zai'],
+    [/A/g, 'ha'],
+    [/Ä/g, 'hai'],
     [/B/g, 'ba'],
     [/C/g, 'ca'],
     [/D/g, 'da'],
-    [/E/g, 'ze'],
+    [/E/g, 'he'],
     [/F/g, 'fa'],
     [/G/g, 'ga'],
     [/H/g, 'xo'],
-    [/I/g, 'zi'],
+    [/I/g, 'hi'],
     [/J/g, 'ja'],
     [/K/g, 'ka'],
     [/L/g, 'la'],
     [/M/g, 'ma'],
     [/N/g, 'na'],
-    [/O/g, 'zo'],
-    [/Ö/g, 'zoi'],
+    [/O/g, 'ho'],
+    [/Ö/g, 'hoi'],
     [/P/g, 'pa'],
     [/Q/g, 'ko'],
     [/R/g, 'ra'],
     [/S/g, 'sa'],
     [/T/g, 'ta'],
-    [/U/g, 'zu'],
+    [/U/g, 'hu'],
     [/V/g, 'va'],
     [/W/g, 'vi'],
     [/X/g, 'xa'],
-    [/Y/g, 'zui'],
+    [/Y/g, 'ju'],
     [/Z/g, 'so'],
 
     [/(?<=[nmktxsfjvr])a$/g, ''],
@@ -81,6 +81,10 @@ export const name = 'kex';
 */
 
 export default {
+  hi: { d: '2025-04-08', c: Klass.Other, td: 'hello, hi, excuse me, bye', o: 'a priori', t: 'foj' },
+  '.': { d: '2025-04-08', c: Klass.Other, td: 'separateth two sentences', o: 'a priori', t: 'ru' },
+  ',': { d: '2025-04-09', c: Klass.Other, td: 'separeteth two verbs', o: 'a priori', t: 'jo' },
+
   then: { d: '2025-02-06', c: Klass.Other, td: "separator ','", o: 'a priori', t: 'si' },
 
   // postverb -o
@@ -104,10 +108,12 @@ export default {
   of_course: { d: '2024-02-13', c: Klass.Postverb, td: '[restrictiveness] non-restrictive, which is, so', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-West_Germanic/þus', t: 'su' },
   ever: { d: '2024-10-19', c: Klass.Postverb, td: '[essentiality] in essence, in a nominal sense', o: 'https://en.wiktionary.org/wiki/esse#Latin', t: 'se' },
 
-  not: { d: '2024-02-13', c: Klass.Joiner, td: '[logic] not, negation', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ne', t: 'na' },
-  and: { d: '2024-02-13', c: Klass.Joiner, td: '[logic] and, both, conjunction', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/bai', t: 'zej' },
-  or: { d: '2024-02-13', c: Klass.Joiner, td: '[logic] or, at least one, disjunction', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/bai', t: 'zov' },
-  iff: { d: '2024-02-13', c: Klass.Joiner, td: '[logic] if and only iff, equivalence', o: 'a priori', t: 'zas' },
+  with: { d: '2025-04-08', c: Klass.Joiner, td: 'together with', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/midi', t: 'mi' },
+
+  not: { d: '2024-02-13', c: Klass.Other, td: '[logic] not, negation', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ne', t: 'na' },
+  and: { d: '2024-02-13', c: Klass.Joiner, td: '[logic] and, both, conjunction', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/bai', t: 'hej' },
+  or: { d: '2024-02-13', c: Klass.Joiner, td: '[logic] or, at least one, disjunction', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/bai', t: 'hov' },
+  iff: { d: '2024-02-13', c: Klass.Joiner, td: '[logic] if and only iff, equivalence', o: 'a priori', t: 'has' },
   xor: { d: '2025-01-02', c: Klass.Joiner, td: '[logic] either', idiom: ['not', 'iff'] },
 
   that: { d: '2024-02-13', c: Klass.Clause, td: 'openeth statement clause. @0 is the (event, statement) that @{sentence}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/%C3%BEat', t: 'di' },
@@ -136,11 +142,11 @@ export default {
   infinite: { d: '2024-09-06', c: Klass.Numeral, td: 'infinite, ∞', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/sin-', t: 'sin' },
   kilo: { d: '2024-02-13', c: Klass.Numeral, td: "[separator] 1e+3, ','", o: 'https://en.wikipedia.org/wiki/Metric_prefix', t: 'klo' },
 
-  at_least: { d: '2024-02-13', c: Klass.Numeral, td: '[comparative] at most. ≤', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/l%C4%ABtilaz', t: 'li' },
-  more_than: { d: '2025-04-07', c: Klass.Numeral, td: '[comparative] more than. <', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/l%C4%ABtilaz', t: 'laj' },
-  some: { d: '2025-04-06', c: Klass.Numeral, td: 'some, at least one', o: 'https://en.wiktionary.org/wiki/%CF%80%E1%BE%B6%CF%82#Ancient_Greek', idiom: ['more_than', 'zero'] },
-  plural: { d: '2024-09-17', c: Klass.Numeral, td: 'plural, at least two', idiom: ['at_least', 'two'] },
-  each: { d: '2024-02-13', c: Klass.Numeral, td: 'each, every, all', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/allaz', t: 'zav' },
+  less_equal: { d: '2024-02-13', c: Klass.Numeral, td: '[comparative] at most. ≤', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/l%C4%ABtilaz', t: 'li' },
+  less: { d: '2025-04-07', c: Klass.Numeral, td: '[comparative] more than. <', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/l%C4%ABtilaz', t: 'laj' },
+  some: { d: '2025-04-06', c: Klass.Numeral, td: 'some, greater than 0', o: 'https://en.wiktionary.org/wiki/%CF%80%E1%BE%B6%CF%82#Ancient_Greek', idiom: ['zero', 'less'] },
+  plural: { d: '2024-09-17', c: Klass.Numeral, td: 'plural, greater than 1', idiom: ['one', 'less'] },
+  each: { d: '2024-02-13', c: Klass.Numeral, td: 'each, every, all', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/allaz', t: 'hav' },
 
   how_many: { d: '2024-02-13', c: Klass.Numeral, td: '[interogative] how many', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/hw%C5%8D', t: 'vo' },
 
@@ -152,6 +158,7 @@ export default {
   _exp: { d: '2024-08-24', c: Klass.Numeral, td: '[binary] exponential, ^', o: 'https://en.wiktionary.org/wiki/potere#Latin', t: 'pote' },
   _log: { d: '2024-08-24', c: Klass.Numeral, td: '[binary] logarithm', o: 'https://en.wiktionary.org/wiki/logarithmo#Latin', t: 'loca' },
 
+  the_number: { d: '2025-04-08', c: Klass.Other, td: '@0 is the number @{arg}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/tal%C5%8D', t: 'ta' },
   _ord: { d: '2024-08-02', c: Klass.Other, td: '@0 is @{number}-th', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/-i%C3%BE%C5%8D', t: 'ti' },
   //_card: { d: '2024-08-02', c: Klass.Other, td: '@0 contains @{number} elements', o: 'https://en.wiktionary.org/wiki/%E5%80%8B', t: 'ko' },
 
@@ -184,11 +191,13 @@ export default {
   [name]: { d: '2024-02-17', c: Klass.Verb, td: `@0 is the language ${name}`, o: 'a priori', t: name },
 
   // basic
+  do: { d: '2025-04-09', c: Klass.Verb, td: '@0 doth something', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/d%C5%8Dn%C4%85', t: 'do' },
+
+  true: { d: '2025-04-08', c: Klass.Verb, td: '@0 is (true, real, correct)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/w%C4%93raz', t: 'ver' },
   cause: { d: '2024-02-13', c: Klass.Verb, td: '@0 (causeth, leteth) @{1:result, effect}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/l%C4%93tan%C4%85', t: 'let' },
   back: { d: '2024-06-14', c: Klass.Verb, td: '@0 is temporally (inverse, opposite) of @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/bak%C4%85', t: 'bak' },
   counter: { d: '2024-06-14', c: Klass.Verb, td: '@0 (complementeth, is dual of) @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ga-', t: 'jam' },
   relate: { d: '2024-09-14', c: Klass.Verb, td: '@0 is (related to @1, @1-ish)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Indo-European/-teros', t: 'der' },
-  less: { d: '2025-04-06', c: Klass.Verb, td: '@0 is less than @1', o: 'https://en.wiktionary.org/wiki/l%C3%A6s#Old_English', t: 'ler' },
 
   exist: { d: '2024-08-23', c: Klass.Verb, td: '@0 (existeth, happeneth, occureth, is real, is actual)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/beun%C4%85', t: 'bevn' },
   change: { d: '2025-04-06', c: Klass.Verb, td: '@0 turneth into @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/wihslaz', t: 'viks' },
@@ -220,37 +229,48 @@ export default {
   move: { d: '2024-08-31', c: Klass.Verb, td: '@0 (moveth, is dynamic)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/wegan%C4%85', t: 'vex', complex: ['not', 'least', 'swift'] },
   swift: { d: '2024-06-18', c: Klass.Verb, td: '@0 is (swift, quick)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/snellaz', t: 'snev' },
 
-  // geometry
-  point: { d: '2024-10-01', c: Klass.Verb, td: '[geometry] @0 is a (point, position, dot)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/bruzdaz', t: 'brur' },
-  interval: { d: '2024-10-01', c: Klass.Verb, td: '[geometry] @0 is (an interval, an area, a volume, a domain, an accumulation)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/braidaz', t: 'braj' },
+  // mathematics
+  number: { d: '2025-04-08', c: Klass.Verb, td: '[mathematics] @0 is a number', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/tal%C5%8D', t: 'tav' },
+  integer: { d: '2025-04-08', c: Klass.Verb, td: '[mathematics] @0 is an integer number (…,-1,0,+1,…)', complex: ['number', 'one', 'far'] },
+  real_number: { d: '2025-04-08', c: Klass.Verb, td: '[mathematics] @0 is a real number', complex: ['number', 'zero', 'far'] },
 
-  line: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is (straight, a line)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/l%C4%ABn%C7%AD', t: 'lin' },
-  plane: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is (flat, a plane)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/flataz', t: 'flat' },
+  shape: { d: '2025-04-08', c: Klass.Verb, td: '[mathematics] @0 is a shape', o: 'https://en.wiktionary.org/wiki/forma#Latin', t: 'form' },
 
-  cross: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 crosseth @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/spl%C4%ABtan%C4%85', t: 'spit' },
-  parallel: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is parallel to @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/baltijaz', t: 'bavt' },
-  skew: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is skew to @1', o: 'https://en.wiktionary.org/wiki/wrigian#Old_English', t: 'vrix' },
-  orthogonal: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is (orthogonal, perpendicular) to @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/staupaz', t: 'stavf' },
+  point: { d: '2024-10-01', c: Klass.Verb, td: '[mathematics] @0 is a sizeless point', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/bruzdaz', t: 'brur' },
+  line: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 is a straight line', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/l%C4%ABn%C7%AD', t: 'lin' },
+  plane: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 is a flat plane', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/flataz', t: 'flat' },
 
-  circle: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a circle', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/hringaz', t: 'krin' },
-  ball: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is (a ball, a sphere)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/balluz', t: 'bav' },
+  size: { d: '2024-10-01', c: Klass.Verb, td: '[geometry] @0 is (a size, a measure, an area, a volume, an accumulation)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/haupaz', t: 'kavf' },
 
-  polygon: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a polygon', complex: ['interval', 'at_least', 'three', 'line'] },
-  polyhedron: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a polyhedron', complex: ['interval', 'at_least', 'four', 'plane'] },
+  circle: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 is (a circle, a disc)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/hringaz', t: 'krink' },
+  ball: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 is (a ball, a sphere)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/balluz', t: 'bav' },
 
-  triangle: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a triangle', complex: ['interval', 'three', 'line'] },
-  isosceles: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is an isosceles triangle', complex: ['interval', 'three', 'line', 'two', 'same'] },
-  regular_triangle: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is an equilateral triangle', complex: ['interval', 'three', 'line', 'same'] },
+  basis: { d: '2025-04-08', c: Klass.Verb, td: '[geometry] @0 is a independent basis', o: 'https://en.wiktionary.org/wiki/%CE%B2%CE%AC%CF%83%CE%B9%CF%82#Ancient_Greek', t: 'bas' },
+  dimension: { d: '2025-04-08', c: Klass.Verb, td: '[geometry] @0 is a dimension', complex: ['number', 'basis'] },
 
-  tetragon: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a tetragon', complex: ['interval', 'four', 'line'] },
-  pentagon: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a pentagon', complex: ['interval', 'five', 'line'] },
-  hexagon: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a hexagon', complex: ['interval', 'six', 'line'] },
+  parallel: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 is (parallel, horizontal) to @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/baltijaz', t: 'bavt' },
+  cross: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 crosseth @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/spl%C4%ABtan%C4%85', t: 'spit' },
+  skew: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 is skew to @1', o: 'https://en.wiktionary.org/wiki/wrigian#Old_English', t: 'vrix', complex: ['not', 'parallel', 'not', 'cross'] },
 
-  rectangle: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a rectangle', complex: ['interval', 'four', 'orthogonal'] },
-  square: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a square', complex: ['interval', 'four', 'line', 'same'] },
+  orthogonal: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 is (orthogonal, perpendicular, vertical) to @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/staupaz', t: 'stavf' },
 
-  regular_hexahedron: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a regular hexagon', complex: ['interval', 'six', 'plane', 'same'] },
+  polygon: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 is a polygon', complex: ['shape', 'three', 'less_equal', 'line'] },
+  polyhedron: { d: '2025-04-07', c: Klass.Verb, td: '[mathematics] @0 is a polyhedron', complex: ['shape', 'four', 'less_equal', 'plane'] },
 
+  triangle: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a triangle', complex: ['shape', 'three', 'line'] },
+  isosceles: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is an isosceles triangle', complex: ['shape', 'three', 'line', 'two', 'same'] },
+  regular_triangle: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is an equilateral triangle', complex: ['shape', 'three', 'line', 'same'] },
+
+  tetragon: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a tetragon', complex: ['shape', 'four', 'line'] },
+  pentagon: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a pentagon', complex: ['shape', 'five', 'line'] },
+  hexagon: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a hexagon', complex: ['shape', 'six', 'line'] },
+
+  rectangle: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a rectangle', complex: ['shape', 'four', 'orthogonal'] },
+  square: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a square', complex: ['shape', 'four', 'line', 'same'] },
+
+  regular_hexahedron: { d: '2025-04-07', c: Klass.Verb, td: '[geometry] @0 is a regular hexagon', complex: ['shape', 'six', 'plane', 'same'] },
+
+  // physics
   world: { d: '2024-02-13', c: Klass.Verb, td: '@0 is a (world, universe, spacetime)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/luftuz', t: 'luft' },
   space: { d: '2024-02-13', c: Klass.Verb, td: '@0 is the 3-dimensional physical spacial continuum', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/r%C5%ABm%C4%85', t: 'rum' },
   time: { d: '2024-02-13', c: Klass.Verb, td: '@0 is the 1-dimensional physical temporal continuum', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/t%C4%ABm%C3%B4', t: 'tim' },
@@ -258,7 +278,7 @@ export default {
   mass: { d: '2024-08-31', c: Klass.Verb, td: '@0 is mass of @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/balk%C3%B4', t: 'bavx' },
 
   date: { d: '2025-04-02', c: Klass.Verb, td: '@0 is (a date, a point in time)', complex: ['point', 'time'] },
-  duration: { d: '2025-04-02', c: Klass.Verb, td: '@0 is (a duration, a quantity in time)', complex: ['interval', 'time'] },
+  duration: { d: '2025-04-02', c: Klass.Verb, td: '@0 is (a duration, a quantity in time)', complex: ['size', 'time'] },
 
   energy: { d: '2024-08-31', c: Klass.Verb, td: '@0 is energy', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Italic/gn%C4%81wos', complex: ['how_much', 'work', 'may'] },
   heat: { d: '2024-09-06', c: Klass.Verb, td: '@0 is heat', complex: ['hot', 'energy'] },
@@ -304,18 +324,16 @@ export default {
   near: { d: '2024-08-08', c: Klass.Verb, td: '@0 is (near, close to) @1 @{distance:little}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/n%C4%93hwaz', complex: ['little', 'far'], t: 'nex' },
   far: { d: '2024-08-08', c: Klass.Verb, td: '@0 is (far, distant, remote) from @1 @{distance:much}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ferrai', t: 'fer' },
 
-  before: { d: '2024-02-13', c: Klass.Verb, td: '[position.global] @0 is (before, earlier than) @{1:after}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/furai', t: 'for' },
-  below: { d: '2024-02-13', c: Klass.Verb, td: '[position] @0 is below @{1:above, far against gravity}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ni%C3%BEan%C4%93', t: 'nit' },
-  hind: { d: '2024-02-13', c: Klass.Verb, td: '[position.local] @0 is behind @{1:front}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/hinder', t: 'xint' },
-  left: { d: '2024-02-13', c: Klass.Verb, td: '[position] @0 is to the left of @{1:right}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Old_High_German/link', t: 'link' },
+  before: { d: '2024-02-13', c: Klass.Verb, td: '[direction] @0 is (before, earlier than) @{1:after}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/furai', t: 'for' },
+  below: { d: '2024-02-13', c: Klass.Verb, td: '[direction] @0 is below @{1:above}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ni%C3%BEan%C4%93', t: 'nit' },
+  hind: { d: '2024-02-13', c: Klass.Verb, td: '[direction] @0 is behind @{1:front}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/hinder', t: 'xint' },
+  left: { d: '2024-02-13', c: Klass.Verb, td: '[direction] @0 is to the left of @{1:right}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Old_High_German/link', t: 'link' },
 
-  west: { d: '2024-08-24', c: Klass.Verb, td: '[position.global] @0 is to the west of @{1:to the east, far agaisnt rotation}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/westraz', t: 'vest' },
-  east: { d: '2025-03-01', c: Klass.Verb, td: '[position.global] @0 is to the east of @{1:to the west, far along rotation}', idiom: ['done', 'west'] },
-  north: { d: '2024-08-24', c: Klass.Verb, td: '[position.global] @0 is to the north of @{1:to the south}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/nur%C3%BEraz', t: 'nur' },
-  south: { d: '2025-03-01', c: Klass.Verb, td: '[position.global] @0 is to the south of @{1:to the north}', idiom: ['done', 'north'] },
+  west: { d: '2024-08-24', c: Klass.Verb, td: '[direction] @0 is to the west of @{1:to the east}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/westraz', t: 'vest' },
+  south: { d: '2024-08-24', c: Klass.Verb, td: '[direction] @0 is to the south of @{1:to the north}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/nur%C3%BEraz', t: 'nurt' },
 
   solid: { d: '2024-02-13', c: Klass.Verb, td: '[state of matter] @0 is solid', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/st%C4%ABfaz', t: 'stif' },
-  liquid: { d: '2024-02-13', c: Klass.Verb, td: '[state of matter] @0 is liquid', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/flut%C4%85', t: 'flu' },
+  liquid: { d: '2024-02-13', c: Klass.Verb, td: '[state of matter] @0 is liquid', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/flut%C4%85', t: 'flut' },
   gas: { d: '2024-02-13', c: Klass.Verb, td: '[state of matter] @0 is gas', o: 'https://en.wiktionary.org/wiki/gas#Dutch', t: 'cas' },
   plasm: { d: '2024-07-15', c: Klass.Verb, td: '[state of matter] @0 is plasm', o: 'https://en.wiktionary.org/wiki/flamma#Latin', t: 'flam' },
 
@@ -323,7 +341,7 @@ export default {
   salt: { d: '2024-02-13', c: Klass.Verb, td: '[matter] @0 is salt', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/salt%C4%85', t: 'sav' },
   stone: { d: '2024-08-19', c: Klass.Verb, td: '[matter] @0 is stone', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/stainaz', t: 'sten' },
   smoke: { d: '2024-09-16', c: Klass.Verb, td: '[matter] @0 is smoke', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/dwemr%C4%85', t: 'dvem' },
-  ash: { d: '2024-09-16', c: Klass.Verb, td: '[matter] @0 is ash', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ask%C7%AD', t: 'zax' },
+  ash: { d: '2024-09-16', c: Klass.Verb, td: '[matter] @0 is ash', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ask%C7%AD', t: 'hax' },
 
   dry: { d: '2024-09-16', c: Klass.Verb, td: '@0 is dry', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/druknaz', complex: ['little', 'contain', 'water'], t: 'drux' },
   wet: { d: '2024-09-16', c: Klass.Verb, td: '@0 is (wet, moist)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/funhtijaz', t: 'font', complex: ['contain', 'water'] },
@@ -355,7 +373,7 @@ export default {
   planet: { d: '2025-04-07', c: Klass.Verb, td: '[celestial] @0 is a planet', complex: ['celestial', 'move'] },
   moon: { d: '2024-02-13', c: Klass.Verb, td: '[celestial] @0 is (a moon, a planet)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/m%C4%93n%C3%B4', t: 'men', complex: ['celestial', 'done', 'lead'] },
 
-  earth: { d: '2024-02-13', c: Klass.Verb, td: '[celestial] @0 is the earth', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/er%C3%BE%C5%8D', t: 'zert' },
+  earth: { d: '2024-02-13', c: Klass.Verb, td: '[celestial] @0 is the earth', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/er%C3%BE%C5%8D', t: 'hert' },
 
   year: { d: '2024-08-30', c: Klass.Verb, td: '@0 is year of @{1:earth}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/j%C4%93r%C4%85', t: 'jer', complex: ['duration', 'sun'] },
   season: { d: '2024-08-30', c: Klass.Verb, td: '@0 is a season of @{1:earth}', complex: ['part', 'year'] },
@@ -422,7 +440,7 @@ export default {
   dream: { d: '2024-10-16', c: Klass.Verb, td: '@0 dreameth @{1:dream}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/draumaz', t: 'dravm' },
 
   // physiological
-  eat: { d: '2024-02-13', c: Klass.Verb, td: '[physiological] @0 eateth @{1:food}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-West_Germanic/etan', t: 'zes' },
+  eat: { d: '2024-02-13', c: Klass.Verb, td: '[physiological] @0 eateth @{1:food}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-West_Germanic/etan', t: 'het' },
   bite: { d: '2024-08-24', c: Klass.Verb, td: '[physiological.eat] @0 biteth @{1:food}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/b%C4%ABtan%C4%85', t: 'bis' },
   chew: { d: '2024-08-24', c: Klass.Verb, td: '[physiological.eat] @0 cheweth @{1:food}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/kewwan%C4%85', t: 'xev' },
   swallow: { d: '2024-08-24', c: Klass.Verb, td: '[physiological.eat] @0 swalloweth @{1:food}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/swelgan%C4%85', t: 'svev' },
@@ -432,7 +450,7 @@ export default {
   vomit: { d: '2024-06-14', c: Klass.Verb, td: '[physiological] @0 vomits @{1:excreta}', complex: ['back', 'eat'], o: 'https://en.wiktionary.org/wiki/puke', t: 'puk' },
   shit: { d: '2024-06-14', c: Klass.Verb, td: '[physiological] @0 shits @{1:excreta}', complex: ['counter', 'eat'], o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/drit%C4%85', t: 'dris' },
   digest: { d: '2024-02-13', c: Klass.Verb, td: '[physiological] @0 digests @{1:food}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/meltan%C4%85', t: 'mevs' },
-  fuck: { d: '2024-02-13', c: Klass.Verb, td: '[physiological] @0 fucketh A', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/fukk%C5%8Dn%C4%85', t: 'fok' },
+  fuck: { d: '2024-02-13', c: Klass.Verb, td: '[physiological] @0 fucketh @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/fukk%C5%8Dn%C4%85', t: 'fok' },
   sick: { d: '2024-02-13', c: Klass.Verb, td: '[physiological] @0 (is sick, malfunctioneth)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/seukaz', t: 'sevk' },
   healthy: { d: '2024-08-24', c: Klass.Verb, td: '[physiological] @0 is healthy', complex: ['little', 'sick'], o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/sundaz', t: 'suns' },
   recover: { d: '2024-12-24', c: Klass.Verb, complex: ['down', 'sick'], td: '[physiological] @0 recovers' },
@@ -446,7 +464,7 @@ export default {
 
   care: { d: '2024-09-10', c: Klass.Verb, td: '[emotion] @0 (regardeth, careth about) @{1:important}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/kar%C5%8D', t: 'kar' },
   fear: { d: '2024-09-10', c: Klass.Verb, td: '[emotion.care] @0 (worrieth, feareth, is afraid of, negatively cares about) @1', complex: ['care', 'bad'], o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/furhtaz', t: 'fors' },
-  respect: { d: '2024-09-10', c: Klass.Verb, td: '[emotion.care] @0 (respecteth, honoureth, positively cares about) @1', complex: ['care', 'good'], o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/wer%C3%BEaz', t: 'ver' },
+  respect: { d: '2024-09-10', c: Klass.Verb, td: '[emotion.care] @0 (respecteth, honoureth, positively cares about) @1', complex: ['care', 'good'], o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/wer%C3%BEaz', t: 'vert' },
   neglect: { d: '2024-09-10', c: Klass.Verb, td: '[emotion] @0 (neglecteth, is indifferent to, cares less about) @1', complex: ['little', 'care'] },
   serene: { d: '2024-09-10', c: Klass.Verb, td: '[emotion] @0 is (calm about, serene about, positively neglects) @1', complex: ['neglect', 'good'], o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/r%C5%8D%C5%8D', t: 'rov' },
   scorn: { d: '2024-09-10', c: Klass.Verb, td: '[emotion] @0 (scorneth, disdaineth, disrespecteth, negatively neglects) @1', complex: ['neglect', 'bad'] },
@@ -467,8 +485,8 @@ export default {
   want: { d: '2024-02-13', c: Klass.Verb, td: '[emotion] @0 wants @1', complex: ['little', 'shun'], o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/wiljan%C4%85', t: 'viv' },
   love: { d: '2024-09-10', c: Klass.Verb, td: '[emotion] @0 (loveth, is romantically attracted to) @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/gernaz', t: 'jern' },
   randy: { d: '2024-09-12', c: Klass.Verb, o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/gailaz', td: '[emotion] @0 is (randy, aroused, lustful, horny, sexual) for @1', t: 'cev' },
-  envy: { d: '2024-09-12', c: Klass.Verb, o: 'https://en.wiktionary.org/wiki/zelo#Latin', td: '[emotion.hate] @0 envieth @1', t: 'jelo' },
-  pity: { d: '2024-09-10', c: Klass.Verb, o: 'https://en.wiktionary.org/wiki/ginatha#Old_Dutch', td: '[emotion] @0 (pitieth, feel sympathy) @1', t: 'nata' },
+  envy: { d: '2024-09-12', c: Klass.Verb, o: 'https://en.wiktionary.org/wiki/zelo#Latin', td: '[emotion.hate] @0 envieth @1', t: 'zev' },
+  pity: { d: '2024-09-10', c: Klass.Verb, o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/mildijaz', td: '[emotion] @0 (pitieth, feel sympathy) @1', t: 'mivt' },
 
   // facial
   laugh: { d: '2024-02-13', c: Klass.Verb, td: '[facial expression] @0 laugheth', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/hlahjan%C4%85', t: 'klak' },
@@ -496,7 +514,7 @@ export default {
 
   // communicate
   name: { d: '2024-07-28', c: Klass.Verb, td: '@0 (meaneth, signifieth, is a name of) @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/nam%C3%B4', t: 'nam' },
-  speak: { d: '2024-06-14', c: Klass.Verb, td: '@0 speaketh in @{1:language, protocol}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/tal%C5%8D', t: 'tav' },
+  speak: { d: '2024-06-14', c: Klass.Verb, td: '@0 speaketh in @{1:language, protocol}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/sprekan%C4%85', t: 'spek' },
   language: { d: '2024-06-14', c: Klass.Verb, td: '@0 language', idiom: ['done', 'speak'] },
   say: { d: '2024-06-14', c: Klass.Verb, td: '[communicate] @0 (sayeth, encodes) @{1:idea} as @{2:expression}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/sagjan%C4%85', t: 'sak' },
   understand: { d: '2024-06-14', c: Klass.Verb, td: '[communicate] @0 (understandeth, decodeth) @{1:idea} from @{2:expression}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/hlustiz', complex: ['counter', 'say'], t: 'xlust' },
@@ -556,7 +574,7 @@ export default {
   bird: { d: '2024-02-13', c: Klass.Verb, td: '[animal] @0 is a bird', complex: ['animal', 'fly'], o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/fuglaz', t: 'fovk' },
   crow: { d: '2024-07-15', c: Klass.Verb, td: '[bird] @0 is a (crow, raven)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/hrabnaz', t: 'raf' },
 
-  amphibia: { d: '2024-02-13', c: Klass.Verb, td: '[animal] @0 is a amphibia', complex: ['animal', 'wet'], o: 'https://en.wiktionary.org/wiki/amphibius#Latin', t: 'zanfif' },
+  amphibia: { d: '2024-02-13', c: Klass.Verb, td: '[animal] @0 is an amphibia', complex: ['animal', 'wet'], o: 'https://en.wiktionary.org/wiki/amphibius#Latin', t: 'hanfif' },
   frog: { d: '2024-07-15', c: Klass.Verb, td: '[amphibia] @0 is a frog', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/fruskaz', t: 'frux' },
 
   fish: { d: '2024-02-13', c: Klass.Verb, td: '[animal] @0 is a fish', complex: ['animal', 'swim'], o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/fiskaz', t: 'fix' },
@@ -578,7 +596,7 @@ export default {
   shoulder: { d: '2024-02-13', c: Klass.Verb, td: '[body part] @0 is a (shoulder, buttock) of @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-West_Germanic/skuldru', t: 'skut' },
 
   limb: { d: '2024-02-13', c: Klass.Verb, td: '[body part] @0 is a (limb, leg, arm, branch) of @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/limuz', t: 'lim' },
-  arm: { d: '2024-11-24', c: Klass.Verb, td: '[body part] @0 is an arm', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/armaz', t: 'zarm' },
+  arm: { d: '2024-11-24', c: Klass.Verb, td: '[body part] @0 is an arm', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/armaz', t: 'harm' },
   leg: { d: '2024-11-24', c: Klass.Verb, td: '[body part] @0 is a leg', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/lagjaz', t: 'lax' },
 
   //extremity: { d: '2024-02-13', c: Klass.Verb, t: 'and', o: 'https://en.wiktionary.org/wiki/reconstruction:proto-germanic/handuz', td: '[body part] @0 is a (extremity, hand, foot) of @1' },
@@ -594,7 +612,7 @@ export default {
   nail: { d: '2024-02-13', c: Klass.Verb, td: '[body part] @0 is a (nail, claw)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/naglaz', t: 'nev' },
 
   eye: { d: '2024-02-13', c: Klass.Verb, td: '[face part] @0 is (an eye, a visual sensor)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Uralic/%C5%9Bilm%C3%A4', t: 'xivm' },
-  ear: { d: '2024-02-13', c: Klass.Verb, td: '[face part] @0 is (an ear, an audial sensor)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/aus%C3%B4', t: 'zavs' },
+  ear: { d: '2024-02-13', c: Klass.Verb, td: '[face part] @0 is (an ear, an audial sensor)', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/aus%C3%B4', t: 'havs' },
   nose: { d: '2024-02-13', c: Klass.Verb, td: '[face part] @0 is a nose', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/nas%C5%8D', t: 'nas' },
   mouth: { d: '2024-02-13', c: Klass.Verb, td: '[face part] @0 is a mouth', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/mun%C3%BEaz', t: 'munt' },
   lip: { d: '2024-02-13', c: Klass.Verb, td: '[face part] @0 is a lip', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/lep%C3%B4', t: 'lef' },
@@ -609,7 +627,7 @@ export default {
   vagina: { d: '2024-09-22', c: Klass.Verb, td: '[genitalia] @0 is a vagina of @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/fu%C3%BEiz', t: 'fot' },
   penis: { d: '2024-09-22', c: Klass.Verb, td: '[genitalia] @0 is a (penis, clitoris) of @1', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-West_Germanic/pinti', t: 'pint' },
 
-  egg: { d: '2024-09-16', c: Klass.Verb, td: '@0 is an egg', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ajj%C4%85', t: 'zaj' },
+  egg: { d: '2024-09-16', c: Klass.Verb, td: '@0 is an egg', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/ajj%C4%85', t: 'haj' },
   blood: { d: '2024-07-29', c: Klass.Verb, td: '[body fluid] @0 is blood', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/bl%C5%8D%C3%BE%C4%85', t: 'blot' },
   milk: { d: '2024-08-31', c: Klass.Verb, td: '[body fluid] @0 is milk', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/meluks', t: 'muk' },
   lymph: { d: '2024-08-31', c: Klass.Verb, td: '[body fluid] @0 is lymph', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/dreuzaz', t: 'frevr' },
@@ -628,7 +646,7 @@ export default {
   right: { d: '2025-04-06', c: Klass.Verb, td: '@0 is a human right', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/rehtaz', t: 'rext' },
 
   humble: { d: '2024-10-01', c: Klass.Verb, td: '@0 is humble', complex: ['little', 'noble'], o: 'https://en.wiktionary.org/wiki/mj%C3%BAkr#Old_Norse', t: 'mjuk' },
-  noble: { d: '2024-10-01', c: Klass.Verb, td: '@0 is noble', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/a%C3%BEal%C4%85', t: 'zat' },
+  noble: { d: '2024-10-01', c: Klass.Verb, td: '@0 is noble', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/a%C3%BEal%C4%85', t: 'hat' },
 
   work: { d: '2024-02-13', c: Klass.Verb, td: '@0 worketh @{1:operation}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/werk%C4%85', t: 'verx' },
   dwell: { d: '2024-12-20', c: Klass.Verb, td: '@0 dwelleth in @{1:house}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/b%C5%ABan%C4%85', t: 'bovn' },
@@ -669,12 +687,15 @@ export default {
   // misc
   knot: { d: '2024-12-23', c: Klass.Verb, td: '@0 is a (knot, tangle, tie, bond) of @{1}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/knutt%C3%B4', t: 'knut' },
 
+  idle: { d: '2025-04-09', c: Klass.Verb, td: '@0 is idle', complex: ['little', 'busy'] },
+  busy: { d: '2025-04-09', c: Klass.Verb, td: '@0 is busy of @{1}', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-West_Germanic/bis%C5%8Dn', t: 'bis' },
+
   sentence: { d: '2024-10-05', c: Klass.Verb, td: '[grammar] @0 is a sentence', o: 'https://en.wiktionary.org/wiki/%CF%86%CF%81%CE%AC%CF%83%CE%B9%CF%82#Ancient_Greek', t: 'fras' },
   clause: { d: '2024-10-05', c: Klass.Verb, td: '[grammar] @0 is a clause', o: 'https://en.wiktionary.org/wiki/clauso#Latin', t: 'klavs' },
   word: { d: '2024-10-05', c: Klass.Verb, td: '[grammar] @0 is a word', o: 'https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/wurd%C4%85', t: 'vort' },
 
   verb: { d: '2024-10-05', c: Klass.Verb, td: '[grammar] @0 is a verb', complex: ['word', 'trunk'], o: 'https://en.wiktionary.org/wiki/verbo#Latin', t: 'verf' },
-  case: { d: '2024-10-05', c: Klass.Verb, td: '[grammar] @0 is an case of @1', o: 'https://en.wiktionary.org/wiki/casu#Latin', t: 'kas' },
+  case: { d: '2024-10-05', c: Klass.Verb, td: '[grammar] @0 is an case', o: 'https://en.wiktionary.org/wiki/casu#Latin', t: 'kas' },
   nominative: { d: '2024-12-23', c: Klass.Verb, td: '[grammar] @0 is nominative', complex: ['arm', 'zero', '_ord', 'verb'] },
   accusative: { d: '2024-12-23', c: Klass.Verb, td: '[grammar] @0 is accusative', complex: ['arm', 'one', '_ord', 'verb'] },
   dative: { d: '2024-12-23', c: Klass.Verb, td: '[grammar] @0 is dative', complex: ['arm', 'two', '_ord', 'verb'] },
